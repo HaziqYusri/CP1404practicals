@@ -12,7 +12,8 @@ def main():
     print(data)
     champions = count_champions(data)
     print(champions)
-
+    countries = get_unique_countries(data)
+    print(countries)
 
 #Read the Wimbledon data and return a list of [champion, country].
 def read_wimbledon_data(filename):
@@ -34,5 +35,10 @@ def count_champions(data):
     for champion, _ in data:
         champions_to_wins[champion] = champions_to_wins.get(champion, 0) + 1
     return champions_to_wins
+
+#Sort unique countries
+def get_unique_countries(data):
+    countries = {country for _, country in data}
+    return sorted(countries)
 
 main()
