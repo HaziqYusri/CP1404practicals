@@ -16,3 +16,7 @@ HEX_COLOURS = {
     "blanchedalmond": "#ffebcd",
     "blue": "#0000ff"
 }
+
+# Display all available color names
+for name, code in HEX_COLOURS.items():
+    print(f"{name.capitalize():<20} is {code}")
