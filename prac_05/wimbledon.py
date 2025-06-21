@@ -10,6 +10,9 @@ FILENAME = "wimbledon.csv"
 def main():
     data = read_wimbledon_data(FILENAME)
     print(data)
+    champions = count_champions(data)
+    print(champions)
+
 
 #Read the Wimbledon data and return a list of [champion, country].
 def read_wimbledon_data(filename):
@@ -24,5 +27,12 @@ def read_wimbledon_data(filename):
             champion = row[2].strip()
             data.append([champion, country])
     return data
+
+#Count number of wins per champion and returns dictionary
+def count_champions(data):
+    champions_to_wins = {}
+    for champion, _ in data:
+        champions_to_wins[champion] = champions_to_wins.get(champion, 0) + 1
+    return champions_to_wins
 
 main()
