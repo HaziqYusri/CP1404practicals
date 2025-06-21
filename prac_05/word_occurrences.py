@@ -1,7 +1,7 @@
 """
 Word Occurrences
-Estimate: 20 minutes
-Actual:   10 minutes
+Estimate: 15 minutes
+Actual:   9 minutes
 """
 
 #User input
@@ -14,6 +14,7 @@ for word in words:
     word = word.strip('.,!?;:"\'')  # Remove punctuation
     word_to_count[word] = word_to_count.get(word, 0) + 1
 
+# Displays text to analyse word occurence
 print(f"\nText: {text}\n")
 
 # Word sorting

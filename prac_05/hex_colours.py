@@ -1,4 +1,9 @@
-#Dictionary of 10 colours
+"""
+CP1404 Practical 5
+Hexadecimal colour lookup
+"""
+
+# Dictionary of 10 colours
 HEX_COLOURS = {
     "aliceblue": "#f0f8ff",
     "antiquewhite": "#faebd7",
@@ -16,14 +21,16 @@ HEX_COLOURS = {
 for name, code in HEX_COLOURS.items():
     print(f"{name.capitalize():<20} is {code}")
 
-# User input loop
+#User input loop
 colour_name = input("Enter a colour name: ").lower()
 
 while colour_name != "":
     hex_code = HEX_COLOURS.get(colour_name)
     if hex_code:
         print(f"The code for \"{colour_name}\" is {HEX_COLOURS.get(colour_name)}")
-    print("Invalid colour, please try again.")
-    colour_name = input("Enter a colour name: ").lower()
+        colour_name = input("Enter a colour name: ").lower()
+    else:
+        print("Invalid colour, please try again.")
+        colour_name = input("Enter a colour name: ").lower()
 
 print("Goodbye!")

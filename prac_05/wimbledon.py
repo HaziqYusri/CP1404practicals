@@ -1,11 +1,27 @@
 """
 wimbledon.py
-Estimate: 25 minutes
-Actual:  35 minutes
+Estimate: 20 minutes
+Actual:   minutes
 """
 import csv
 
 FILENAME = "wimbledon.csv"
+
+def main():
+    data = read_wimbledon_data(FILENAME)
+    #print(data)
+    champions = count_champions(data)
+    #print(champions)
+    countries = get_unique_countries(data)
+    #print(countries)
+
+    print("Wimbledon Champions:")
+    for champion, wins in sorted(champions.items()):
+        print(f"{champion} {wins}")
+
+    print(f"\nThese {len(countries)} countries have won Wimbledon:")
+    print(", ".join(countries))
+
 #Read the Wimbledon data and return a list of [champion, country].
 def read_wimbledon_data(filename):
     data = []
@@ -32,17 +48,4 @@ def get_unique_countries(data):
     countries = {country for _, country in data}
     return sorted(countries)
 
-def main():
-    data = read_wimbledon_data(FILENAME)
-    champions = count_champions(data)
-    countries = get_unique_countries(data)
-
-    print("Wimbledon Champions:")
-    for champion, wins in sorted(champions.items()):
-        print(f"{champion} {wins}")
-
-    print(f"\nThese {len(countries)} countries have won Wimbledon:")
-    print(", ".join(countries))
-
-if __name__ == '__main__':
-    main()
+main()
