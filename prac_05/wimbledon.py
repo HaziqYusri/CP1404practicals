@@ -9,11 +9,18 @@ FILENAME = "wimbledon.csv"
 
 def main():
     data = read_wimbledon_data(FILENAME)
-    print(data)
+    #print(data)
     champions = count_champions(data)
-    print(champions)
+    #print(champions)
     countries = get_unique_countries(data)
-    print(countries)
+    #print(countries)
+
+    print("Wimbledon Champions:")
+    for champion, wins in sorted(champions.items()):
+        print(f"{champion} {wins}")
+
+    print(f"\nThese {len(countries)} countries have won Wimbledon:")
+    print(", ".join(countries))
 
 #Read the Wimbledon data and return a list of [champion, country].
 def read_wimbledon_data(filename):
