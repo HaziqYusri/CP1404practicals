@@ -1,0 +1,28 @@
+"""
+wimbledon.py
+Estimate: 20 minutes
+Actual:   minutes
+"""
+import csv
+
+FILENAME = "wimbledon.csv"
+
+def main():
+    data = read_wimbledon_data(FILENAME)
+    print(data)
+
+#Read the Wimbledon data and return a list of [champion, country].
+def read_wimbledon_data(filename):
+    data = []
+    with open(filename, "r", encoding="utf-8-sig") as in_file:
+        reader = csv.reader(in_file)
+        next(reader)  # Skip the header
+        for row in reader:
+            # Print to debug if necessary:
+            # print(row)
+            country = row[1].strip()
+            champion = row[2].strip()
+            data.append([champion, country])
+    return data
+
+main()
