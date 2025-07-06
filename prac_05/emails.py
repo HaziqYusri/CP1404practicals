@@ -1,7 +1,7 @@
 """
 Emails
 Estimate: 20 minutes
-Actual:   25 minutes
+Actual:    minutes
 """
 
 #Extract and format a guessed name from the email.
@@ -13,6 +13,7 @@ def extract_name(email):
 #Main code to collect and process names
 def main():
     email_to_name = {}
+
 
     while True:
         email = input("Email: ").strip()
@@ -28,10 +29,9 @@ def main():
 
         email_to_name[email] = name_guess
 
-    print()
     for email, name in email_to_name.items():
         print(f"{name} ({email})")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
