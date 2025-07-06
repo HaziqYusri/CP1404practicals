@@ -1,7 +1,7 @@
 """
 Guitar
 Estimate: 20 minutes
-Actual:    minutes
+Actual:   20 minutes
 """
 
 class Guitar:
