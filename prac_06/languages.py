@@ -1,7 +1,7 @@
 """
 Languages
 Estimate: 20 minutes
-Actual:    minutes
+Actual:   15 minutes
 """
 
 from programming_language import ProgrammingLanguage
