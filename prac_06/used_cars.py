@@ -9,10 +9,20 @@ from prac_06.car import Car
 
 def main():
     """Demo test code to show how to use car class."""
-    my_car = Car(180)
-    my_car.drive(30)
-    print(f"Car has fuel: {my_car.fuel}")
-    print(my_car)
+    #Initialise limo with 100 fuel
+    limo = Car("Limo", 100)
+
+    #Add 20 units of fuel
+    limo.add_fuel(20)
+
+    #Print current fuel units
+    print(f"Limo has {limo.fuel} units of fuel.")
+
+    #Drive 115km
+    limo.drive(115)
+
+    #Print ___str___
+    print(limo)
 
 
 main()
