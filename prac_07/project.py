@@ -9,3 +9,11 @@ class Project:
         self.cost = cost
         self.completion = completion
 
+    def __str__(self):
+        return (f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, "
+                f"priority {self.priority}, estimate: ${self.cost:,.2f}, "
+                f"completion: {self.completion}%")
+
+    def __lt__(self, other):
+        """Sorted by priority"""
+        return self.priority < other.priority
