@@ -6,7 +6,7 @@ Actual:    minutes
 # TODO: Functions:
 #   load_projects (ongoing)
 #   save_projects (ongoing)
-#   display_projects (incomplete)
+#   display_projects (ongoing)
 #   filter_projects (incomplete)
 #   add_project (incomplete)
 #   update_project (incomplete)
@@ -41,8 +41,7 @@ def main():
             filename = input(f"Enter filename to save:") + ".txt"
             save_projects(filename, projects)
         elif choice == 'd':
-            #display_projects(projects)
-            break
+            display_projects(projects)
         elif choice == 'f':
             #filter_projects(projects)
             break
@@ -87,6 +86,14 @@ def save_projects(filename, projects):
                        f"\t{project.cost:.2f}\t{project.completion}\n")
     print(f"Saved {len(projects)} projects to {filename}")
 
+def display_projects(projects):
+    """Display projects grouped by completion status."""
+    print("Incomplete projects:")
+    for p in sorted([p for p in projects if p.completion < 100], key=lambda x: x.priority):
+        print(f"  {p}")
+    print("Completed projects:")
+    for p in sorted([p for p in projects if p.completion == 100], key=lambda x: x.priority):
+        print(f"  {p}")
 
 
 if __name__ == '__main__':

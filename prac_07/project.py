@@ -17,3 +17,12 @@ class Project:
     def __lt__(self, other):
         """Sorted by priority"""
         return self.priority < other.priority
+
+    def is_complete(self):
+        return self.completion == 100
+
+    def is_incomplete(self):
+        return self.completion < 100
+
+    def is_after(self, given_date):
+        return self.start_date >= given_date
