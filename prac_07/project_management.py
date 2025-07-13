@@ -7,8 +7,8 @@ Actual:    minutes
 #   load_projects (ongoing)
 #   save_projects (ongoing)
 #   display_projects (ongoing)
-#   filter_projects (incomplete)
-#   add_project (incomplete)
+#   filter_projects (ongoing)
+#   add_project (ongoing)
 #   update_project (incomplete)
 
 from datetime import datetime
@@ -44,8 +44,7 @@ def main():
         elif choice == 'f':
             filter_projects(projects)
         elif choice == 'a':
-            #add_project(projects)
-            break
+            add_project(projects)
         elif choice == 'u':
             #update_project(projects)
             break
@@ -99,6 +98,16 @@ def filter_projects(projects):
     date = datetime.strptime(date_str, "%d/%m/%y").date()
     for p in sorted([p for p in projects if p.start_date >= date], key=lambda x: x.start_date):
         print(p)
+
+def add_project(projects):
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_str = input("Start date (dd/mm/yy): ")
+    start_date = datetime.strptime(start_str, "%d/%m/%y").date()
+    priority = int(input("Priority: "))
+    cost = float(input("Cost estimate: $"))
+    completion = int(input("Percent complete: "))
+    projects.append(Project(name, start_date, priority, cost, completion))
 
 if __name__ == '__main__':
     main()
