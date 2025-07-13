@@ -13,6 +13,19 @@ def main():
         vintage_string = " (vintage)" if guitar.is_vintage() else ""
         print(f"Guitar {i}: {guitar.name:<20} ({guitar.year}), worth ${guitar.cost:10,.2f}{vintage_string}")
 
+    #Lets user add new guitars
+    print("\nAdd new guitars:")
+
+    while True:
+        name = input("Name: ")
+        if not name:
+            break
+        year = int(input("Year: "))
+        cost = float(input("Cost: "))
+        guitar = Guitar(name, year, cost)
+        guitars.append(guitar)
+        print(f"{guitar} added.\n")
+
 def load_guitars(filename):
     """Read guitars from the CSV and returns a list"""
     guitars = []
