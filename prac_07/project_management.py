@@ -30,7 +30,6 @@ def main():
     print("Welcome to Pythonic Project Management")
     projects = load_projects(FILENAME)
 
-
     while True:
         print(MENU)
         choice = input(">>> ").lower()
@@ -43,8 +42,7 @@ def main():
         elif choice == 'd':
             display_projects(projects)
         elif choice == 'f':
-            #filter_projects(projects)
-            break
+            filter_projects(projects)
         elif choice == 'a':
             #add_project(projects)
             break
@@ -95,6 +93,12 @@ def display_projects(projects):
     for p in sorted([p for p in projects if p.completion == 100], key=lambda x: x.priority):
         print(f"  {p}")
 
+def filter_projects(projects):
+    """Filter projects after specified date"""
+    date_str = input("Show projects that start after date (dd/mm/yy): ")
+    date = datetime.strptime(date_str, "%d/%m/%y").date()
+    for p in sorted([p for p in projects if p.start_date >= date], key=lambda x: x.start_date):
+        print(p)
 
 if __name__ == '__main__':
     main()
