@@ -29,16 +29,17 @@ MENU = """
 def main():
     print("Welcome to Pythonic Project Management")
     projects = load_projects(FILENAME)
-    print(f"Loaded {len(projects)} projects from {FILENAME}")
+
 
     while True:
         print(MENU)
         choice = input(">>> ").lower()
         if choice == 'l':
-            break
+            filename = input("Enter filename to load: ") + ".txt"
+            projects = load_projects(filename)
         elif choice == 's':
-            #save_projects(filename, projects)
-            break
+            filename = input(f"Enter filename to save:") + ".txt"
+            save_projects(filename, projects)
         elif choice == 'd':
             #display_projects(projects)
             break
@@ -67,7 +68,18 @@ def load_projects(filename):
             name, start_str, priority, cost, completion = parts
             start_date = datetime.strptime(start_str, "%d/%m/%Y").date()
             projects.append(Project(name, start_date, int(priority), float(cost), int(completion)))
+    print(f"Loaded {len(projects)} projects from {FILENAME}")
     return projects
+
+
+def save_projects(filename, projects):
+    """Save projects to file"""
+    with open(filename, 'w') as file:
+        file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
+        for project in projects:
+            file.write(f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t{project.priority}"
+                       f"\t{project.cost:.2f}\t{project.completion}\n")
+    print(f"Saved {len(projects)} projects to {FILENAME}")
 
 
 
