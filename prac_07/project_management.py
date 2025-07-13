@@ -5,7 +5,7 @@ Actual:    minutes
 """
 # TODO: Functions:
 #   load_projects (ongoing)
-#   save_projects (incomplete)
+#   save_projects (ongoing)
 #   display_projects (incomplete)
 #   filter_projects (incomplete)
 #   add_project (incomplete)
@@ -53,6 +53,12 @@ def main():
             #update_project(projects)
             break
         elif choice == 'q':
+            confirm = input(f"Would you like to save to {FILENAME}? ").lower()
+            if confirm in ['yes', 'y']:
+                save_projects(FILENAME, projects)
+            else:
+                filename = input(f"Enter filename to save:") + ".txt"
+                save_projects(filename,projects)
             print("Thank you for using custom-built project management software.")
             break
         else:
@@ -68,7 +74,7 @@ def load_projects(filename):
             name, start_str, priority, cost, completion = parts
             start_date = datetime.strptime(start_str, "%d/%m/%Y").date()
             projects.append(Project(name, start_date, int(priority), float(cost), int(completion)))
-    print(f"Loaded {len(projects)} projects from {FILENAME}")
+    print(f"Loaded {len(projects)} projects from {filename}")
     return projects
 
 
@@ -79,7 +85,7 @@ def save_projects(filename, projects):
         for project in projects:
             file.write(f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t{project.priority}"
                        f"\t{project.cost:.2f}\t{project.completion}\n")
-    print(f"Saved {len(projects)} projects to {FILENAME}")
+    print(f"Saved {len(projects)} projects to {filename}")
 
 
 
