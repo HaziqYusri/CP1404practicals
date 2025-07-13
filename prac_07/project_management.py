@@ -46,8 +46,7 @@ def main():
         elif choice == 'a':
             add_project(projects)
         elif choice == 'u':
-            #update_project(projects)
-            break
+            update_project(projects)
         elif choice == 'q':
             confirm = input(f"Would you like to save to {FILENAME}? ").lower()
             if confirm in ['yes', 'y']:
@@ -100,6 +99,7 @@ def filter_projects(projects):
         print(p)
 
 def add_project(projects):
+    """Adds new project to projects list"""
     print("Let's add a new project")
     name = input("Name: ")
     start_str = input("Start date (dd/mm/yy): ")
@@ -108,6 +108,20 @@ def add_project(projects):
     cost = float(input("Cost estimate: $"))
     completion = int(input("Percent complete: "))
     projects.append(Project(name, start_date, priority, cost, completion))
+
+def update_project(projects):
+    """Updates existing project in projects list"""
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+    index = int(input("Project choice: "))
+    project = projects[index]
+    print(project)
+    new_completion = input("New Percentage: ")
+    if new_completion:
+        project.completion = int(new_completion)
+    new_priority = input("New Priority: ")
+    if new_priority:
+        project.priority = int(new_priority)
 
 if __name__ == '__main__':
     main()
