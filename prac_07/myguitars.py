@@ -17,14 +17,21 @@ def main():
     print("\nAdd new guitars:")
 
     while True:
-        name = input("Name: ")
+        name = input("Name: ").strip()
         if not name:
             break
-        year = int(input("Year: "))
-        cost = float(input("Cost: "))
-        guitar = Guitar(name, year, cost)
-        guitars.append(guitar)
-        print(f"{guitar} added.\n")
+        try:
+            year = int(input("Year: "))
+            cost = float(input("Cost: "))
+            guitar = Guitar(name, year, cost)
+            guitars.append(guitar)
+            print(f"{guitar} added.\n")
+        except ValueError:
+            print("Invalid input. Year must be an integer, cost must be a number.")
+
+    # Save all guitars back to file
+    save_guitars("guitars.csv", guitars)
+    print("Guitars saved to guitars.csv")
 
 def load_guitars(filename):
     """Read guitars from the CSV and returns a list"""
@@ -35,5 +42,12 @@ def load_guitars(filename):
             name, year, cost = row
             guitars.append(Guitar(name, int(year), float(cost)))
     return guitars
+
+def save_guitars(filename, guitars):
+    """Writes guitars to CSV file."""
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        for guitar in guitars:
+            writer.writerow([guitar.name, guitar.year, guitar.cost])
 
 main()
